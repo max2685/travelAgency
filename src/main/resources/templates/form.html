@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http//thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+            integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+
+        <div class="col-sm-8">
+            <h1>Add new tour</h1>
+
+            <form action="#" th:action="@{/processForm}" th:object="${tour}" method="post">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" th:field="*{id}">
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control" th:field="*{tourDetails.id}">
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control" th:field="*{tourDetails.country}">
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control" th:field="*{tourDetails.description}">
+                </div>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}"
+                         th:errors="*{name}"></div>
+                    <input type="text" class="form-control" th:field="*{name}">
+                </div>
+
+                <div class="form-group">
+                    <label>Code</label>
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('code')}"
+                         th:errors="*{code}"></div>
+                    <input type="text" class="form-control" th:field="*{code}">
+                    <small class="form-text text-muted">Expected format: LL-DDL where L-letter, D-digit</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Continent</label>
+                    <select name="continent" class="form-control">
+                        <option th:each="continent : ${T(com.webapp.travelAgency.model.Tour.Continent).values()}"
+                                th:value="${continent}" th:text="${continent}">
+
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Start date</label>
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('date')}"
+                         th:errors="*{date}"></div>
+                    <input type="date" class="form-control" th:field="*{date}">
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('duration')}"
+                         th:errors="*{duration}"></div>
+                    <input type="number" class="form-control" th:field="*{duration}">
+                </div>
+                <div class="form-group">
+                    <label>All inclusive</label>
+                    <input type="checkbox" th:field="*{allInclusive}">
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <input class="btn btn-success" type="submit" value="submit">
+                    </div>
+                    <div class="col">
+                        <a th:href="@{/}" class="btn btn-warning btn float-right">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

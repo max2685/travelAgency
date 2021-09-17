@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http//thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment form Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+            integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+
+        <div class="col-sm-8">
+            <h1>Add new comment</h1>
+
+            <form action="#" th:action="@{/processFromComment}" th:object="${comment}" method="post">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" th:field="*{id}">
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" th:field="*{tour.id}" placeholder="Select a tour">
+                        <option th:each="tour : ${tours}"
+                                th:value="${tour.id}"
+                                th:text="${tour.name}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Content</label>
+                    <input type="text" class="form-control" th:field="*{content}">
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <input class="btn btn-success" type="submit" value="Submit">
+                    </div>
+                    <div class="col">
+                        <a th:href="@{/}" class="btn btn-warning float-right">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
